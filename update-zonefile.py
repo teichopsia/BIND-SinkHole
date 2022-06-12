@@ -203,7 +203,7 @@ def load_zone(zonefile, origin):
 
 def update_serial(zone):
     soa = zone.get_rdataset('@', dns.rdatatype.SOA)[0]
-    soa.serial += 1
+    return dns.rdata.Rdata.replace(soa,serial=soa.serial+1)
 
 def usage(code=0):
     print('Usage: update-zonefile.py zonefile origin')
